@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exibir Categoria</title>
+</head>
+<body>
+    
+    <input type="number" id="exibirCategoria">
+    <button onclick="exibirC()">Exibir Categoria</button>
+
+    <div class="mae">
+        <span id="idCategoria"></span>
+        <span id="nomeCategoria"></span>
+    </div>
+
+    <script>
+        async function exibirC(){
+            var categoria = document.getElementById("exibirCategoria").value
+
+            var idCat = document.getElementById("idCategoria")
+            var nomeCat = document.getElementById("nomeCategoria")
+            var mae = document.getElementsByClassName("mae")
+
+            obj = {
+                id:categoria
+            }
+            await fetch(`https://localhost:7158/api/Categorias/exibir/${categoria}`,{
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+            }
+            ).then(response => response.json())
+            .then(response =>{
+                idCat.innerHTML += response.id
+                nomeCat.innerHTML += response.nome
+            })
+            
+        }
+    </script>
+</body>
+</html>

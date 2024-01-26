@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Produtos</title>
+</head>
+<body>
+
+    <form>
+        <label>ID PRODUTO</label>
+        <input id="id" type="number">
+
+        <label>NOME</label>
+        <input id="nome" type="text">
+
+        <label>ESTOQUE</label>
+        <input id="estoque" type="number">
+
+        <label>PREÇO</label>
+        <input id="preco" type="number">
+
+        <label>ID CATEGORIA</label>
+        <input id="Cat" type="number">
+
+        <button type="submit" onclick="adicionarProduto()">ENVIAR</button>
+
+        
+    </form>
+
+    <a href="listarcategoria.html">LISTAR</a>
+    
+
+    <script>
+    async function adicionarProduto(){
+        var idValue = document.getElementById("id").value
+        var nome = document.getElementById("nome").value
+        var estoque = document.getElementById("estoque").value
+        var preco = document.getElementById("preco").value
+        var idCategoria = document.getElementById("Cat").value
+
+        let obj = {
+            id : idValue,
+            nome : nome,
+            estoque : estoque,
+            preco : preco,
+            Categoria : {
+                id : idCategoria,
+                       
+            }
+        }
+
+    // var token = localStorage.getItem("token")
+
+        await fetch("https://localhost:7158/api/Produtos",{
+            method: "POST",
+            headers :{
+                // "Authorization" : "Bearer " + token,
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify(obj)
+        }
+        )
+    // .then(window.open("listarProduto.html"))
+    }
+    </script>
+</body>
+</html>

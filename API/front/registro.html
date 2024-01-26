@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>REGISTRO</h1>
+
+    <form>
+        <input id="codigo" type="number">
+        <input id="userNome" type="text">
+        <input id="userSenha" type="text">
+        <select id="funcao">
+            <option select>SELECIONE</option>
+            <option value="admin">ADMIN</option>
+            <option value="funcionario">FUNCIONÁRIO</option>
+            <option value="gerente">GERENTE</option>
+        </select>
+
+        <button type="submit" onclick="registrar()">ENVIAR</button>
+    </form>
+
+    <script>
+        async function registrar(){
+    var idValue = document.getElementById("codigo").value
+    var nome = document.getElementById("userNome").value
+    var senha = document.getElementById("userSenha").value
+    var funcao = document.getElementById("funcao").value
+
+    let obj = {
+        id : idValue,
+        username : nome,
+        password : senha,
+        role : funcao
+    }
+
+    await fetch("https://localhost:7158/api/Users",
+    {
+        method : "POST",
+        headers : {
+            "Content-Type": "application/json"
+        },
+        body : JSON.stringify(obj)
+    })
+}
+    </script>
+
+</body>
+</html>

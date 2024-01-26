@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Categoria</title>
+
+    <link rel="stylesheet" href="styleCategoriaExcluir.css">
+</head>
+<body>
+    <input type="number" id="excluirCategoria">
+    <button onclick="excluir()">Excluir</button>
+
+    <script>
+        async function excluir(){
+            var categoria = document.getElementById("excluirCategoria").value 
+            obj = {
+                id:categoria
+            }
+            await fetch(`https://localhost:7158/api/Categorias/deletar/${categoria}`,{
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(obj)
+            }
+            
+            )
+        }
+    </script>
+</body>
+</html>

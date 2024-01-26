@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Produto</title>
+
+    <link rel="stylesheet" href="styleProdutoExcluir.css">
+</head>
+<body>
+    
+    <input type="number" id="excluirProduto">
+    <button onclick="excluirP()">Excluir</button>
+
+    <script>
+        async function excluirP(){
+            var produto = document.getElementById("excluirProduto").value 
+            obj = {
+                id:produto
+            }
+            await fetch(`https://localhost:7158/api/Produtos/deletar/${produto}`,{
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(obj)
+            }
+            
+            )
+        }
+    </script>
+
+</body>
+</html>

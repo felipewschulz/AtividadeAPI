@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exibir Produto</title>
+</head>
+<body>
+
+    <input type="number" id="exibirProduto">
+    <button onclick="exibirP()">Exibir Categoria</button>
+
+    <div class="mae">
+        <span id="idProduto"></span>
+        <span id="nomeProduto"></span>
+        <span id="precoProduto"></span>
+        <span id="estoqueProduto"></span>
+        <span id="idCategoria"></span>
+        <span id="nomeCategoria"></span>
+    </div>
+
+    <script>
+        async function exibirP(){
+            var produto = document.getElementById("exibirProduto").value
+
+            var idPro = document.getElementById("idProduto")
+            var nomePro = document.getElementById("nomeProduto")
+            var precoPro = document.getElementById("precoProduto")
+            var estoquePro = document.getElementById("estoqueProduto")
+            
+            var nomeCat = document.getElementById("nomeCategoria")
+
+            obj = {
+                id:produto
+            }
+            await fetch(`https://localhost:7158/api/Produtos/exibir/${produto}`,{
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+            }
+            ).then(response => response.json())
+            .then(response =>{
+                idPro.innerHTML += response.id
+                nomePro.innerHTML += response.nome
+                precoPro.innerHTML += response.preco
+                estoquePro.innerHTML += response.estoque
+                nomeCat.innerHTML += response.categoria.nome
+            })
+            
+        }
+    </script>
+
+    
+</body>
+</html>

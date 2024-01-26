@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Categoria</title>
+
+    <link rel="stylesheet" href="styleCategoriaEdit.css">
+</head>
+<body>
+
+    <form>
+        <input id="id" type="number">
+        <input id="nome" type="text">
+
+        <button type="submit" onclick="editarCategoria()">ENVIAR</button>
+    </form>
+
+    <a href="listarcategoria.html">AEEE</a>
+    
+
+
+
+    <script>
+        async function editarCategoria(){
+    var idValue = document.getElementById("id").value
+    var nome = document.getElementById("nome").value
+
+    let obj = {
+        id : idValue,
+        nome : nome,
+    }
+
+
+    await fetch(`https://localhost:7158/api/Categorias/${idValue}`,{
+        method: "PUT",
+        headers :{
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify(obj)
+      }
+    )
+}
+    </script>
+</body>
+</html>

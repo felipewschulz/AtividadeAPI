@@ -1,0 +1,100 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #b9b9b9;
+    font-family: sans-serif;
+}
+
+.mainBG{
+    background-color: rgb(255, 240, 103);
+    width: 92%;
+    margin: auto;
+}
+
+main{
+    background-color: rgb(242, 248, 248);
+    width: 98%;
+    margin: auto;
+    padding-top: 30px;
+}
+
+.listarCategorias{
+    margin: auto;
+    text-align: center;
+}
+
+.listarCategorias h1{
+    padding-top: 10px;
+    color: #3b3b3b;
+    font-size: 46px;
+    padding-bottom: 10px;
+    margin: auto;
+    width: 50%;
+    border-bottom: 3px solid black;
+    border-radius: 400px;
+    background: rgb(249,236,200);
+    background: linear-gradient(0deg, rgba(249,236,200,1) 0%, rgba(185,232,252,1) 100%);
+}
+
+.tabela1{
+    margin-bottom: 30px;
+}
+
+.botaoCarregar button{
+    margin-top: 20px;
+    width: 300px;
+    font-size: 30px;
+    height: 50px;
+    border: 2px solid black;
+    border-radius: 15px;
+    background-color: antiquewhite;
+    margin-bottom: 40px;
+    transition: all 0.5s ease-out;
+}
+
+.botaoCarregar button:hover{
+    background-color: rgb(247, 212, 165);
+    cursor: pointer;
+    border: 2px solid black;
+}
+
+table{
+    width: 90%;
+    margin: auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th{
+    border: 1px solid black;
+    padding: 10px;
+}
+
+th:nth-child(1){
+    background-color: rgb(213, 238, 201);
+    width: 150px;
+}
+
+th:nth-child(2){
+    background-color: beige;
+}
+
+.categoriaField{
+    background-color: rgb(190, 190, 247);
+    width: 300px;
+}
+
+.actField{
+    background-color: rgb(252, 190, 98);
+    width: 380px;
+}
+
+tbody td{
+    border: 1px solid black;
+    padding: 10px 10px;
+    font-size: 20px;
+    background-color: white;
+}

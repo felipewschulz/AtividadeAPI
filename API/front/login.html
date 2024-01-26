@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN</title>
+
+    <link rel="stylesheet" href="loginstyle.css">
+</head>
+<body>
+    
+    <main>
+        <div class="divMain">
+            <h1>LOGIN</h1>
+
+            <form>
+                <label>nome</label>
+                <input id="userNome" type="text">
+
+                <label>senha</label>
+                <input id="userSenha" type="text">
+
+                <button type="submit" onclick="buscarUser()">ENVIAR</button>
+            </form>
+        </div>
+
+        
+    </main>
+        <a href="listarcategoria.html" class="firstPage">Página Inicial</a>
+
+    <script>
+        async function buscarUser(){
+    var inputValue = document.getElementById("userNome").value
+    var inputValue2 = document.getElementById("userSenha").value
+
+    let obj = {
+        username :  inputValue,
+        password : inputValue2
+    }
+
+    let valor
+
+    await fetch(`https://localhost:7158/api/Users/login`, {
+        method : "POST",
+        headers : {
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify(obj),
+    }).then(response => response.json())
+    .then(response => {
+        valor = response.token
+        localStorage.setItem("token", valor)
+        window.location.href="listarcategoria.html"
+    })
+
+}
+    </script>
+
+
+</body>
+</html>

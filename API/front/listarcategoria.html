@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de categorias</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="mainBG">
+        <main>
+
+            <a href="homeCategoria.html">ADICIONAR CATEGORIA</a>
+
+            <div class="listarCategorias">
+                <h1>Listar categorias</h1>
+                
+                <div class="botaoCarregar">
+                    <button onclick="carregar()">Carregar</button>
+                </div>
+            </div>
+
+            <!-- TABELA DE CATEGORIAS -->
+
+            <table class="tabela1">
+                <thead>
+                    <tr>
+                        <th>Id da Categoria</th>
+                        <th>Nome</th>
+                        <th class="actField">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- LISTA DAS CATEGORIAS -->
+                </tbody>
+            </table>
+
+            <a href="homeProduto.html">ADICIONAR PRODUTO</a>
+
+            <!-- TABELA DE PRODUTOS -->
+
+            <div class="listarCategorias">
+                <h1>Listar produtos</h1>
+                
+                <div class="botaoCarregar">
+                    <button onclick="carregarProduto()">Carregar</button>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id do Produto</th>
+                        <th>Nome</th>
+                        <th class="categoriaField">Categoria</th>
+                        <th class="actField">Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="produto">
+                    <!-- LISTA DE PRODUTOS -->
+                </tbody>
+            </table>
+
+        </main>
+    </div>
+
+    <script>
+        function carregar(){
+            linha = ''
+            tabela = document.getElementsByTagName("tbody")[0]
+            tabela.innerHTML = ''
+            fetch('https://localhost:7158/api/Categorias')
+            .then(dados => dados.json())
+            .then(resposta => {
+                resposta.forEach(element => {
+                    linha = `<tr><td>${element.id}<td>${element.nome}<td><a href="editarCategoria.html">Editar</a> <a href="exibirCategoria.html">Exibir</a> <a href="excluirCategoria.html">Excluir</a></td></tr>`
+                    tabela.innerHTML += linha
+                })
+            })
+        }
+
+        function carregarProduto(){
+            var linha = document.getElementById("produto")
+            linha = ''
+            tabela = document.getElementById("produto")
+            tabela.innerHTML = ''
+            fetch('https://localhost:7158/api/Produtos')
+            .then(dados => dados.json())
+            .then(resposta => {
+                resposta.forEach(element => {
+                    linha = `<tr><td>${element.id}<td>${element.nome}<td>${element.categoria.nome}<td><a href="editarProduto.html">Editar</a> <a href="exibirProduto.html">Exibir</a> <a href="excluirProduto.html">Excluir</a></td></tr>`
+                    tabela.innerHTML += linha
+                })
+            })
+           
+        }
+
+        
+
+    </script>
+</body>
+</html>
